@@ -16,9 +16,9 @@
             android:title="Location"
             />
         <item
-            android:id="@+id/nav_mail"
-            android:icon="@mipmap/nav_mail"
-            android:title="Mail"/>
+            android:id="@+id/nav_weather"
+            android:icon="@mipmap/ic_weather"
+            android:title="Weather"/>
         <item
             android:id="@+id/nav_task"
             android:icon="@mipmap/nav_task"

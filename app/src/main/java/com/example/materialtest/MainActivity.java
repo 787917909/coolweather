@@ -79,8 +79,12 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_task:
                      Intent intent1 = new Intent(MainActivity.this,DownloadActivity.class);
                      startActivity(intent1);
-
                         mDrawerLayout.closeDrawers();
+                        break;
+                    case R.id.nav_weather:
+                        Intent intent2 = new Intent(MainActivity.this,WeatherActivity.class);
+                        startActivity(intent2);
+                        break;
                 }
                 return true;
             }
