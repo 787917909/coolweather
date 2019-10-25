@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".WeatherActivity"></activity>
+        <activity android:name=".CityActivity"></activity>
+        <activity android:name=".WeatherActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +27,7 @@
         <activity android:name=".LocationActivity" />
         <activity
             android:name=".MainActivity"
-            android:label="Fruits"></activity>
+            android:label="Fruits" />
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
@@ -50,6 +51,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 </manifest>

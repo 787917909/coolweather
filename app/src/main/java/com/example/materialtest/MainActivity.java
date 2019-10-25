@@ -14,6 +14,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+import com.example.materialtest.db.City;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
@@ -82,8 +84,9 @@ public class MainActivity extends AppCompatActivity {
                         mDrawerLayout.closeDrawers();
                         break;
                     case R.id.nav_weather:
-                        Intent intent2 = new Intent(MainActivity.this,WeatherActivity.class);
+                        Intent intent2 = new Intent(MainActivity.this, CityActivity.class);
                         startActivity(intent2);
+                        mDrawerLayout.closeDrawers();
                         break;
                 }
                 return true;
@@ -110,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(0);
+                    Thread.sleep(1000);
                 }catch (InterruptedException e){
                     e.printStackTrace();
                 }

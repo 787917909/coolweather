@@ -1,6 +1,8 @@
 package com.example.materialtest;
 
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -107,6 +109,22 @@ public class ChooseAreaFragment extends Fragment {
                 }else if (currentLevel==LEVEL_CITY){
                     selectedCity = cityList.get(position);
                     queryCounties();
+                }else if (currentLevel == LEVEL_COUNTY){
+                    String weatherId = countyList.get(position).getWeatherId();
+                    Intent intent = new Intent(getActivity(),WeatherActivity.class);
+                    intent.putExtra("weather_id",weatherId);
+                    startActivity(intent);
+                    getActivity().finish();
+                }
+            }
+        });
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (currentLevel == LEVEL_COUNTY){
+                    queryCities();
+                } else if (currentLevel == LEVEL_CITY){
+                    queryProvinces();
                 }
             }
         });
@@ -133,7 +151,6 @@ public class ChooseAreaFragment extends Fragment {
             queryFromServer(address,"province");
         }
     }
-
     /**
      * 查询选中省内所有的市,优先从数据库查询,如果没有查询到再去服务器上查询
      */
