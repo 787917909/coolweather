@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CityActivity"></activity>
+        <activity android:name=".CityActivity" />
+
         <activity android:name=".WeatherActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
@@ -28,10 +29,14 @@
         <activity
             android:name=".MainActivity"
             android:label="Fruits" />
-
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="T6QzgpykYbAG8QeoqXiBoQFrydTGTWjw" />
+
+        <service
+            android:name=".service.AutoUpdateService"
+            android:enabled="true"
+            android:exported="true"></service>
 
         <service
             android:name=".DownloadService"

@@ -1,9 +1,11 @@
 package com.example.materialtest;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.materialtest.gson.Forecast;
 import com.example.materialtest.gson.Weather;
+import com.example.materialtest.service.AutoUpdateService;
 import com.example.materialtest.util.HttpUtil;
 import com.example.materialtest.util.Utility;
 import org.jetbrains.annotations.NotNull;
@@ -90,7 +93,6 @@ public class WeatherActivity extends AppCompatActivity {
             weatherId = weather.basic.weatherId;
             showWeatherInfo(weather);
         }else {
-
              weatherId = getIntent().getStringExtra("weather_id");
             weatherLayout.setVisibility(View.INVISIBLE);
             requestWeather(weatherId);
@@ -108,17 +110,23 @@ public class WeatherActivity extends AppCompatActivity {
         }else{
             loadBingPic();
         }
-
+        drawerLayout = findViewById(R.id.drawer_layout1);
+        navButton = findViewById(R.id.nav_button);
+            navButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    drawerLayout.openDrawer(GravityCompat.START);
+                }
+            });
     }
 
-    private void loadBingPic(){
+    private void loadBingPic()  {
         String requestBingPic = "http://guolin.tech/api/bing_pic";
         HttpUtil.sendOkHttpRequest(requestBingPic, new Callback() {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
                 e.printStackTrace();
             }
-
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 final String bingPic = response.body().string();
@@ -162,6 +170,7 @@ public class WeatherActivity extends AppCompatActivity {
                             editor.putString("weather",responseText);
                             editor.apply();
                             showWeatherInfo(weather);
+
                         }else {
                             Toast.makeText(WeatherActivity.this,"获取天气信息失败",Toast.LENGTH_SHORT).show();
                         }
@@ -171,7 +180,7 @@ public class WeatherActivity extends AppCompatActivity {
             }
         });
     }
-    private void showWeatherInfo(Weather weather){
+    public void showWeatherInfo(Weather weather){
         String cityName = weather.basic.cityName;
         String updateTime = weather.basic.update.updateTime.split(" ")[1];
         String degree = weather.now.temperature + "℃";
@@ -181,6 +190,8 @@ public class WeatherActivity extends AppCompatActivity {
         degreeText.setText(degree);
         weatherInfoText.setText(weatherInfo);
         forecastLayout.removeAllViews();
+        Intent intent = new Intent(this,AutoUpdateService.class);
+        startService(intent);
         for(Forecast forecast:weather.forecastList){
             View view = LayoutInflater.from(this).inflate(R.layout.forecast_item,forecastLayout,false);
             TextView dateText = view.findViewById(R.id.date_text);
