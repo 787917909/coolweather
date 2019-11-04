@@ -1,5 +1,4 @@
 package com.example.materialtest;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,24 +11,19 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import com.example.materialtest.db.City;
 import com.example.materialtest.db.County;
 import com.example.materialtest.db.Province;
 import com.example.materialtest.util.HttpUtil;
 import com.example.materialtest.util.Utility;
-
 import org.jetbrains.annotations.NotNull;
 import org.litepal.crud.DataSupport;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;

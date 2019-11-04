@@ -14,16 +14,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
-import com.example.materialtest.db.City;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -92,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
         initFruits();
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         GridLayoutManager layoutManager = new GridLayoutManager(this,2);
@@ -147,7 +144,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-
             case R.id.backup:
                 Toast.makeText(this,"You clicked Backup",Toast.LENGTH_SHORT).show();
                 break;

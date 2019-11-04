@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.litepal.tablemanager.Connector;
+
 public class LoginActivity extends AppCompatActivity {
 
     private EditText accountEdit;
@@ -19,6 +21,10 @@ public class LoginActivity extends AppCompatActivity {
     private EditText passwordEdit;
 
     private Button login;
+
+    private Button update;
+
+    private Button register;
 
     private SharedPreferences pref;
 
@@ -32,6 +38,8 @@ public class LoginActivity extends AppCompatActivity {
         accountEdit = (EditText) findViewById(R.id.account);
         passwordEdit = (EditText) findViewById(R.id.password);
         login = (Button) findViewById(R.id.login);
+        update = findViewById(R.id.database);
+        register = findViewById(R.id.sign);
         pref = PreferenceManager.getDefaultSharedPreferences(this);
         rememberPass = findViewById(R.id.remember_pass);
         boolean isRemember = pref.getBoolean("remember_password",false);
@@ -67,6 +75,19 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Connector.getDatabase();
+            }
+        });
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
     }
-
 }
+
