@@ -11,6 +11,15 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         />
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <androidx.core.widget.NestedScrollView
         android:id="@+id/weather_layout"
         android:layout_width="match_parent"
@@ -30,7 +39,13 @@
             <include layout="@layout/aqi"/>
             <include layout="@layout/suggestion"/>
         </LinearLayout>
-
     </androidx.core.widget.NestedScrollView>
-
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        <fragment
+            android:id="@+id/choose_area_fragment"
+            android:name="com.example.materialtest.ChooseAreaFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"/>
+    </androidx.drawerlayout.widget.DrawerLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
